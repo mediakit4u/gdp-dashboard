@@ -1,1 +1,30 @@
+.card-alt {
+    background: #222;
+    color: white;
+    padding: 20px;
+    margin: 50px auto;
+    width: 350px;
+    border-radius: 10px;
+    text-align: center;
+}
 
+.card-alt .header {
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.card-alt img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.card-alt a {
+    color: #00c8ff;
+    text-decoration: none;
+}
+
+.card-alt a:hover {
+    text-decoration: underline;
+}

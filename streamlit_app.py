@@ -1,151 +1,141 @@
 import streamlit as st
-import pandas as pd
-import math
-from pathlib import Path
 
-# Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title='GDP dashboard',
-    page_icon=':earth_americas:', # This is an emoji shortcode. Could be a URL too.
-)
+# Page configuration
+st.set_page_config(page_title="Kevin Technologies", page_icon="☁️", layout="wide")
 
-# -----------------------------------------------------------------------------
-# Declare some useful functions.
+# Custom CSS for iPhone-style font and cloud boxes
+st.markdown("""
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-@st.cache_data
-def get_gdp_data():
-    """Grab GDP data from a CSV file.
+        body {
+            font-family: 'Inter', sans-serif;  /* iPhone-inspired font */
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+        }
+        .main-title {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: #00C3FF;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 22px;
+            color: #FFFFFF; /* White text below the header */
+            margin-bottom: 40px;
+        }
+        .cloud-box {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #00C3FF; /* Light blue text inside the cloud */
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .cloud-shape {
+            position: relative;
+            width: 220px;
+            height: 120px;
+            background: #FFFFFF; /* White cloud box */
+            border-radius: 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif; /* Ensuring SF Pro look */
+        }
+        .cloud-shape:before, .cloud-shape:after {
+            content: '';
+            position: absolute;
+            background: #FFFFFF;
+            border-radius: 50%;
+        }
+        .cloud-shape:before {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            left: 30px;
+        }
+        .cloud-shape:after {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            right: 30px;
+        }
+        .cloud-shape:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .service-text {
+            color: #FFFFFF; /* White text below the cloud boxes */
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 50px;
+            color: #AAAAAA;
+        }
+        .contact-box {
+            background: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            color: #FFFFFF;
+            border: 1px solid #00C3FF;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-    This uses caching to avoid having to read the file every time. If we were
-    reading from an HTTP endpoint instead of a file, it's a good idea to set
-    a maximum age to the cache with the TTL argument: @st.cache_data(ttl='1d')
-    """
+# Header Section
+st.markdown('<h1 class="main-title">☁️ Kevin Technologies</h1>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Empowering businesses with innovative digital solutions</p>', unsafe_allow_html=True)
 
-    # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-    DATA_FILENAME = Path(__file__).parent/'data/gdp_data.csv'
-    raw_gdp_df = pd.read_csv(DATA_FILENAME)
+# Services Section
+st.write("### 🌟 Our Services")
+col1, col2, col3 = st.columns(3)
 
-    MIN_YEAR = 1960
-    MAX_YEAR = 2022
+with col1:
+    st.markdown("""
+    <div class="cloud-box">
+        <div class="cloud-shape">🌍 Web Development</div>
+        <p class="service-text">Custom, responsive, and high-performing websites.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # The data above has columns like:
-    # - Country Name
-    # - Country Code
-    # - [Stuff I don't care about]
-    # - GDP for 1960
-    # - GDP for 1961
-    # - GDP for 1962
-    # - ...
-    # - GDP for 2022
-    #
-    # ...but I want this instead:
-    # - Country Name
-    # - Country Code
-    # - Year
-    # - GDP
-    #
-    # So let's pivot all those year-columns into two: Year and GDP
-    gdp_df = raw_gdp_df.melt(
-        ['Country Code'],
-        [str(x) for x in range(MIN_YEAR, MAX_YEAR + 1)],
-        'Year',
-        'GDP',
-    )
+with col2:
+    st.markdown("""
+    <div class="cloud-box">
+        <div class="cloud-shape">📢 Digital Marketing</div>
+        <p class="service-text">SEO, social media, and performance marketing solutions.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # Convert years from string to integers
-    gdp_df['Year'] = pd.to_numeric(gdp_df['Year'])
+with col3:
+    st.markdown("""
+    <div class="cloud-box">
+        <div class="cloud-shape">📈 Business Growth</div>
+        <p class="service-text">Data-driven strategies to scale businesses.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    return gdp_df
+# Contact Section
+st.write("### 📞 Get in Touch")
+st.markdown('<div class="contact-box">📩 Email: contact@kevintech.com <br> 🌐 Website: www.kevintech.com <br> 📞 Phone: +91 9876543210</div>', unsafe_allow_html=True)
 
-gdp_df = get_gdp_data()
-
-# -----------------------------------------------------------------------------
-# Draw the actual page
-
-# Set the title that appears at the top of the page.
-'''
-# :earth_americas: GDP dashboard
-
-Browse GDP data from the [World Bank Open Data](https://data.worldbank.org/) website. As you'll
-notice, the data only goes to 2022 right now, and datapoints for certain years are often missing.
-But it's otherwise a great (and did I mention _free_?) source of data.
-'''
-
-# Add some spacing
-''
-''
-
-min_value = gdp_df['Year'].min()
-max_value = gdp_df['Year'].max()
-
-from_year, to_year = st.slider(
-    'Which years are you interested in?',
-    min_value=min_value,
-    max_value=max_value,
-    value=[min_value, max_value])
-
-countries = gdp_df['Country Code'].unique()
-
-if not len(countries):
-    st.warning("Select at least one country")
-
-selected_countries = st.multiselect(
-    'Which countries would you like to view?',
-    countries,
-    ['DEU', 'FRA', 'GBR', 'BRA', 'MEX', 'JPN'])
-
-''
-''
-''
-
-# Filter the data
-filtered_gdp_df = gdp_df[
-    (gdp_df['Country Code'].isin(selected_countries))
-    & (gdp_df['Year'] <= to_year)
-    & (from_year <= gdp_df['Year'])
-]
-
-st.header('GDP over time', divider='gray')
-
-''
-
-st.line_chart(
-    filtered_gdp_df,
-    x='Year',
-    y='GDP',
-    color='Country Code',
-)
-
-''
-''
+# Footer
+st.markdown('<p class="footer">© 2025 Kevin Technologies. All Rights Reserved.</p>', unsafe_allow_html=True)
 
 
-first_year = gdp_df[gdp_df['Year'] == from_year]
-last_year = gdp_df[gdp_df['Year'] == to_year]
-
-st.header(f'GDP in {to_year}', divider='gray')
-
-''
-
-cols = st.columns(4)
-
-for i, country in enumerate(selected_countries):
-    col = cols[i % len(cols)]
-
-    with col:
-        first_gdp = first_year[first_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-        last_gdp = last_year[last_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-
-        if math.isnan(first_gdp):
-            growth = 'n/a'
-            delta_color = 'off'
-        else:
-            growth = f'{last_gdp / first_gdp:,.2f}x'
-            delta_color = 'normal'
-
-        st.metric(
-            label=f'{country} GDP',
-            value=f'{last_gdp:,.0f}B',
-            delta=growth,
-            delta_color=delta_color
-        )

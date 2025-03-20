@@ -1,1 +1,23 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="card-alt">
+        <div class="header">
+            <img src="{profile_pic}" alt="Profile Picture">
+            <h2>{name}</h2>
+            <p>{job_title} at {company}</p>
+        </div>
+        <div class="contact-info">
+            <p><strong>Email:</strong> {email}</p>
+            <p><strong>Phone:</strong> {phone}</p>
+            <p><strong>Website:</strong> <a href="{website}">{website}</a></p>
+        </div>
+    </div>
+</body>
+</html>

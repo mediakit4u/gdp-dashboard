@@ -2,5 +2,4 @@ streamlit
 fastapi
 uvicorn
 nfcpy
-sqlite3
 requests

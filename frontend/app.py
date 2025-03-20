@@ -55,3 +55,4 @@ def write_to_nfc(data: str):
         return {"message": "Data written to NFC card"}
     except:
         raise HTTPException(status_code=500, detail="Failed to write to NFC card")
+streamlit run frontend/app.py

@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BACKEND_URL = "http://127.0.0.1:8000"  # Update this if backend is hosted online
+BACKEND_URL = https://gdp-dashboard-0qc8.onrender.com      # "http://127.0.0.1:8000"  # Update this if backend is hosted online
 
 st.title("NFC Card Manager")
 

@@ -1,28 +1,11 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-import json
 
 app = FastAPI()
 
-# Define Data Model
-class ClientData(BaseModel):
-    name: str
-    phone: str
-    email: str
-    job_title: str
-    company: str
-    website: str
-    linkedin: str = None
-    twitter: str = None
-    instagram: str = None
-    template: str
+@app.get("/")
+def home():
+    return {"message": "Backend is running!"}
 
-# Store Client Data
-@app.post("/save_client_data")
-def save_client_data(client: ClientData):
-    with open("clients.json", "a") as file:
-        file.write(json.dumps(client.dict()) + "\n")
-
-    # Generate Business Card URL
-    card_url = f"https://your-dbc-url.com/cards/{client.name.replace(' ', '_')}.html"
-    return {"card_url": card_url}
+if _name_ == "_main_":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=10000

@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BACKEND_URL = "https://gdp-dashboard-1-t0ec.onrender.com"  # Update with your backend deployment URL
+BACKEND_URL = "https://gdp-dashboard-1-qnmi.onrender.com"  # Update with your backend deployment URL
 
 st.title("NFC Business Suite - Client Information")
 

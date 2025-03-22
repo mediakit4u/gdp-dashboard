@@ -57,7 +57,11 @@ def save_client_data(client: ClientData):
               client.linkedin, client.twitter, client.instagram, client.template))
         conn.commit()
         conn.close()
-        return {"message": "Client data saved successfully!"}
+
+        # Generate a mock card URL (Replace this with actual logic)
+        card_url = f"https://your-deployed-site.com/{client.name.replace(' ', '_')}_card"
+
+        return {"card_url": card_url}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

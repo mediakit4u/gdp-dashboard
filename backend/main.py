@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
+@app.get("/save_client_data")
 def home():
     return {"message": "Backend is running!"}
 

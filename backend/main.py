@@ -63,4 +63,6 @@ def save_client_data(client: ClientData):
 
 if _name_ == "_main_":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=10000)
+    import os
+    port = int(os.environ.get("PORT", 10000))  # Render assigns a port dynamically
+    uvicorn.run(app, host="0.0.0.0", port=port)

@@ -59,7 +59,7 @@ def save_client_data(client: ClientData):
         conn.close()
 
         # Generate a mock card URL (Replace this with actual logic)
-        card_url = f"https://gdp-dashboard-1-rbqi.onrender.com/{client.name.replace(' ', '_')}_card"
+        card_url = f"https://your-deployed-site.com/{client.name.replace(' ', '_')}_card"
 
         return {"card_url": card_url}
     except Exception as e:

@@ -61,7 +61,7 @@ def save_client_data(client: ClientData):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-if _name_ == "_main_":
+if "__name__" == "__main__":
     import uvicorn
     import os
     port = int(os.environ.get("PORT", 10000))  # Render assigns a port dynamically

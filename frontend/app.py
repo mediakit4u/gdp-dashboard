@@ -45,6 +45,7 @@ if st.button("Save & Generate Business Card"):
     }
 
     response = requests.post(f"{BACKEND_URL}/save_client_data", json=data)
+    st.write("Backend Response:", response.json())  # Debugging
     
     if response.status_code == 200:
         card_url = response.json()["card_url"]

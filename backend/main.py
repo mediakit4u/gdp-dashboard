@@ -42,8 +42,8 @@ def init_db():
 init_db()
 
 # Adjust the path based on your folder structure
-BASE_DIR = Path(_file_).resolve().parent
-templates = Jinja2Templates(directory=str(BASE_DIR / "digital-business-card" / "frontend" / "templates")
+BASE_DIR = Path(__file__).resolve().parent
+templates = Jinja2Templates(directory=str(BASE_DIR / "digital-business-card" / "frontend" / "templates"))
 
 @app.get("/")
 def home():

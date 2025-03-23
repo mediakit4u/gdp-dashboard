@@ -5,4 +5,4 @@ nfcpy
 requests
 qrcode
 pydantic
-io
+

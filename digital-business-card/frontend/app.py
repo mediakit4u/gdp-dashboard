@@ -4,7 +4,7 @@ import qrcode
 from io import BytesIO
 from PIL import Image
 
-BACKEND_URL = "https://your-backend.onrender.com"  # Update this with your Render backend URL
+BACKEND_URL = "https://gdp-dashboard-2.onrender.com"  # Update this with your Render backend URL
 
 st.title("🎨 Digital Business Card Generator")
 

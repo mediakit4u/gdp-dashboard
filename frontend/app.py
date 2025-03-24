@@ -10,7 +10,7 @@ if 'form_data' not in st.session_state:
     st.session_state.form_data = {}
 
 # Get backend URL from secrets or use default
-BACKEND_URL = st.secrets.get("BACKEND_URL", "https://gdp-dashboard-1-rbqi.onrender.com")
+BACKEND_URL = st.secrets.get("BACKEND_URL", "https://gdp-dashboard-2.onrender.com")
 
 st.title("NFC Business Suite - Client Information")
 

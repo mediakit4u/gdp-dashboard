@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from pathlib import Path
 from fastapi.templating import Jinja2Templates
-from digital-business-card import template1.html
+
 
 BACKEND_URL = "https://gdp-dashboard-1-rbqi.onrender.com"  # Update with your backend deployment URL
 
